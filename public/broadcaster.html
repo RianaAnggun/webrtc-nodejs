@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broadcaster | WebRTC Lab</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="broadcaster-page">
+    <div class="ambient-background" aria-hidden="true">
+    <div class="ambient-orb orb-one"></div>
+    <div class="ambient-orb orb-two"></div>
+    <div class="ambient-orb orb-three"></div>
+    <div class="ambient-orb orb-four"></div>
+
+    <div class="glass-bubble bubble-one"></div>
+    <div class="glass-bubble bubble-two"></div>
+    <div class="glass-bubble bubble-three"></div>
+
+    <div class="ambient-glow"></div>
+</div>
+
+<header class="topbar">
+    <div class="brand">
+        <div class="brand-icon">📹</div>
+        <div>
+            <strong>WebRTC Lab</strong>
+            <small>Local Conference</small>
+        </div>
+    </div>
+
+    <nav class="nav-links">
+        <a href="/broadcaster.html" class="active">Broadcaster</a>
+        <a href="/viewer.html">Viewer</a>
+        <a href="#informasi">Informasi</a>
+    </nav>
+
+    <div class="server-status">
+        <span class="dot"></span> Server Online
+    </div>
+</header>
+
+<main class="page">
+    <section class="hero">
+        <span class="eyebrow">BROADCASTER MODE</span>
+        <h1>Share Your <span class="gradient-text">Moment.</span></h1>
+        <p>
+            Siarkan video secara real-time dan bagikan token
+            agar viewer dapat bergabung ke ruang siaran.
+        </p>
+    </section>
+
+    <div class="stack">
+        <section class="glass-card">
+            <div class="card-heading">
+                <div class="icon-box">🎥</div>
+                <div>
+                    <h2>Live Camera Preview</h2>
+                    <p>Kamera digunakan sebagai sumber video siaran.</p>
+                </div>
+                <div class="spacer"></div>
+                <span class="status" id="cameraStatus">Menyiapkan kamera...</span>
+            </div>
+
+            <div class="video-frame">
+                <span class="video-badge">🔴 LIVE</span>
+                <video id="localVideo" autoplay playsinline muted></video>
+            </div>
+
+            
+<div style="margin-top:16px; display:flex; gap:12px; align-items:center; flex-wrap:wrap">
+    <span class="status" id="broadcastStatus">
+        Kamera aktif, siap menyiarkan video.
+    </span>
+
+    <button class="primary-btn" id="startCaptionBtn" type="button">
+        🎙️ Aktifkan Auto Subtitle
+    </button>
+
+    <span class="status" id="speechStatus">
+        Subtitle belum aktif
+    </span>
+</div>
+
+        </section>
+
+        <section class="glass-card">
+            <div class="card-heading">
+                <div class="icon-box">🔑</div>
+                <div>
+                    <h2>Room Token</h2>
+                    <p>Bagikan token ini kepada viewer untuk bergabung.</p>
+                </div>
+            </div>
+
+            <div class="token-box">
+                <div class="row-layout">
+                    <div class="token-value" id="token" style="flex:1">
+                        Menyiapkan token...
+                    </div>
+                    <button class="primary-btn" id="copyTokenBtn" type="button">
+                        ▢ Salin Token
+                    </button>
+                </div>
+                <p style="margin:12px 0 0;color:var(--muted);font-size:11px">
+                    Pastikan viewer memasukkan token yang sama.
+                </p>
+            </div>
+        </section>
+
+        <section class="info-card" id="informasi">
+            <div class="icon-box">ⓘ</div>
+            <div>
+                <strong>Informasi Siaran</strong><br>
+                Izinkan akses kamera dan mikrofon pada browser.
+                Bagikan token kepada viewer agar dapat menerima siaran.
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <span>────</span> WebRTC Lab • Multimedia Technology <span>────</span>
+    </footer>
+</main>
+
+<script src="/socket.io/socket.io.js"></script>
+<script type="module">
+    import { startBroadcast } from './main.js';
+    startBroadcast();
+</script>
+</body>
+</html>
